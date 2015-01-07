@@ -6,7 +6,6 @@ if [ "$1" == "" ]; then
 fi
 
 SVCNAME=$1
-PID="`cat /var/run/hhvm/${SVCNAME}.pid`"
 
 if [[ "`find -L /etc/init.d/ -samefile /etc/init.d/hhvm | grep /etc/init.d/${SVCNAME}`" == "" ]]; then
         # Allow short parameter as hhvm.$1
@@ -17,6 +16,8 @@ if [[ "`find -L /etc/init.d/ -samefile /etc/init.d/hhvm | grep /etc/init.d/${SVC
                 exit 1
         fi
 fi
+
+PID="`cat /var/run/hhvm/${SVCNAME}.pid`"
 
 if [ "$PID" == "" ]; then
         echo No PID, starting up
