@@ -42,6 +42,7 @@ else
                 NEWPID=
         fi
         if ! kill -0 $NEWPID 2> /dev/null; then
+		kill -9 $PID
                 /etc/init.d/${SVCNAME} restart
         fi
 fi
